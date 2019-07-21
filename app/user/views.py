@@ -1,4 +1,5 @@
-from flask import Blueprint, flash, redirect, render_template, url_for
+from flask import (Blueprint, current_app, flash, redirect, render_template,
+                   url_for)
 from flask_login import login_user
 
 from app import db
@@ -39,6 +40,8 @@ def register():
         db.session.add(user)
 
         db.session.commit()
+
+        user.send_welcome_message()
 
         return redirect(url_for('core.home'))
 

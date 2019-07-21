@@ -8,7 +8,6 @@ from app import db as _db
 @pytest.yield_fixture
 def app():
     app = create_app('app.config.Testing')
-    app.testing = True
 
     with app.app_context():
         _db.create_all()

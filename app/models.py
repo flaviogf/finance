@@ -1,7 +1,8 @@
 from flask_login import UserMixin
+from flask_mail import Message
 from sqlalchemy import Column, Integer, String
 
-from app import bcrypt, db
+from app import bcrypt, db, mail
 
 
 class User(db.Model, UserMixin):
@@ -27,3 +28,14 @@ class User(db.Model, UserMixin):
 
     def authenticate(self, password):
         return bcrypt.check_password_hash(self.password, password)
+
+    def send_welcome_message(self):
+        message = Message(subject='Welcome', recipients=[self.email])
+
+        message.body = '''
+Welcome to finance
+
+Your registration was successful!!!
+        '''
+
+        mail.send(message)
