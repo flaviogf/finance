@@ -1,3 +1,6 @@
+{% extends "layout.html" %}
+
+{% block content %}
 <form method="POST">
     {{ form.hidden_tag() }}
 
@@ -20,11 +23,4 @@
 
     {{ form.submit }}
 </form>
-
-{% with messages = get_flashed_messages() %}
-{% if messages %}
-{% for message in messages %}
-<span>{{ message }}</span>
-{% endfor %}
-{% endif %}
-{% endwith %}
+{% endblock %}

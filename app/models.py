@@ -6,12 +6,15 @@ from app import bcrypt, db
 
 class User(db.Model, UserMixin):
     id = Column(Integer,
-                     primary_key=True)
+                primary_key=True)
     name = Column(String,
                   nullable=False)
     email = Column(String,
                    nullable=False,
                    unique=True)
+    image = Column(String,
+                   nullable=False,
+                   default='default.jpg')
     password = Column(String,
                       nullable=False)
 

@@ -1,1 +1,41 @@
-<h1>Register</h1>
+{% extends "layout.html" %}
+
+{% block content %}
+<form method="POST">
+    {{ form.hidden_tag() }}
+
+    {{ form.name.label }}
+    {{ form.name }}
+    {% if form.name.errors %}
+    {% for error in form.name.errors %}
+    <span>{{ error }}</span>
+    {% endfor %}
+    {% endif %}
+
+    {{ form.email.label }}
+    {{ form.email }}
+    {% if form.email.errors %}
+    {% for error in form.email.errors %}
+    <span>{{ error }}</span>
+    {% endfor %}
+    {% endif %}
+
+    {{ form.password.label }}
+    {{ form.password }}
+    {% if form.password.errors %}
+    {% for error in form.password.errors %}
+    <span>{{ error }}</span>
+    {% endfor %}
+    {% endif %}
+
+    {{ form.confirm_password.label }}
+    {{ form.confirm_password }}
+    {% if form.confirm_password.errors %}
+    {% for error in form.confirm_password.errors %}
+    <span>{{ error }}</span>
+    {% endfor %}
+    {% endif %}
+
+    {{ form.submit }}
+</form>
+{% endblock %}

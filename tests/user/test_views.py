@@ -83,3 +83,107 @@ class TestRegister:
         response = client.get('/register')
 
         assert 200 == response.status_code
+
+    def test_should_register_return_field_required_when_not_inform_name(self, client):
+        data = {
+            'name': '',
+            'email': 'naruto@gmail.com',
+            'password': 'sasuke',
+            'confirm_password': 'sasuke'
+        }
+
+        response = client.post('/register', data=data, follow_redirects=True)
+
+        assert b'This field is required' in response.data
+
+    def test_should_register_return_field_required_when_not_inform_email(self, client):
+        data = {
+            'name': 'naruto',
+            'email': '',
+            'password': 'sasuke',
+            'confirm_password': 'sasuke'
+        }
+
+        response = client.post('/register', data=data, follow_redirects=True)
+
+        assert b'This field is required' in response.data
+
+    def test_should_register_return_field_required_when_not_inform_password(self, client):
+        data = {
+            'name': 'naruto',
+            'email': 'naruto@gmail.com',
+            'password': '',
+            'confirm_password': 'sasuke'
+        }
+
+        response = client.post('/register', data=data, follow_redirects=True)
+
+        assert b'This field is required' in response.data
+
+    def test_should_register_return_field_required_when_not_inform_confirm_password(self, client):
+        data = {
+            'name': 'naruto',
+            'email': 'naruto@gmail.com',
+            'password': 'sasuke',
+            'confirm_password': ''
+        }
+
+        response = client.post('/register', data=data, follow_redirects=True)
+
+        assert b'This field is required' in response.data
+
+    def test_should_register_return_invalid_password_when_confirm_password_not_is_equal_to_password(self, client):
+        data = {
+            'name': 'naruto',
+            'email': 'naruto@gmail.com',
+            'password': 'sasuke',
+            'confirm_password': 'boruto'
+        }
+
+        response = client.post('/register', data=data, follow_redirects=True)
+
+        assert b'Field must be equal to password' in response.data
+
+    def test_should_register_return_email_is_already_in_use_when_email_is_already_in_use(self, client, db):
+        naruto = User(name='naruto',
+                      email='naruto@gmail.com',
+                      password='sasuke')
+
+        db.session.add(naruto)
+
+        db.session.commit()
+
+        data = {
+            'name': 'naruto',
+            'email': 'naruto@gmail.com',
+            'password': 'sasuke',
+            'confirm_password': 'sasuke'
+        }
+
+        response = client.post('/register', data=data, follow_redirects=True)
+
+        assert b'Email is already in use' in response.data
+
+    def test_should_register_redirect_to_login_when_register_user(self, client):
+        data = {
+            'name': 'naruto',
+            'email': 'naruto@gmail.com',
+            'password': 'sasuke',
+            'confirm_password': 'sasuke'
+        }
+
+        response = client.post('/register', data=data, follow_redirects=True)
+
+        assert b'Home' in response.data
+
+    def test_should_register_insert_user_in_database(self, client):
+        data = {
+            'name': 'naruto',
+            'email': 'naruto@gmail.com',
+            'password': 'sasuke',
+            'confirm_password': 'sasuke'
+        }
+
+        client.post('/register', data=data, follow_redirects=True)
+
+        assert 1 == User.query.count()

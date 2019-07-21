@@ -8,7 +8,6 @@ class Config:
 
 class Development(Config):
     SQLALCHEMY_DATABASE_URI = 'sqlite:///db.sqlite3'
-    WTF_CSRF_ENABLED = True
 
 
 class Testing(Config):
