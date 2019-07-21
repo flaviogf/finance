@@ -1,4 +1,6 @@
-from app.models import User
+from datetime import datetime
+
+from app.models import Billing, User
 
 
 class TestUser:
@@ -41,3 +43,18 @@ class TestUser:
         password = 'boruto'
 
         assert not naruto.authenticate(password)
+
+
+class TestBilling:
+    def test_should_repr_return_billing_repr(self):
+        billing = Billing(title='Mission A',
+                          description='Mission A description',
+                          value=100.99,
+                          work_date=datetime.utcnow(),
+                          user_id=1)
+
+        expected = "<Billing(id=None, title='Mission A')>"
+
+        result = repr(billing)
+
+        assert expected == result

@@ -1,8 +1,8 @@
 from flask import Flask
 from flask_bcrypt import Bcrypt
 from flask_login import LoginManager
-from flask_sqlalchemy import SQLAlchemy
 from flask_mail import Mail
+from flask_sqlalchemy import SQLAlchemy
 
 db = SQLAlchemy()
 bcrypt = Bcrypt()
@@ -17,6 +17,7 @@ def create_app(config='app.config.Development'):
     from app.models import User
     from app.core.views import core
     from app.user.views import user
+    from app.billing.views import billing
 
     db.init_app(app)
 
@@ -32,5 +33,6 @@ def create_app(config='app.config.Development'):
 
     app.register_blueprint(core)
     app.register_blueprint(user)
+    app.register_blueprint(billing)
 
     return app
