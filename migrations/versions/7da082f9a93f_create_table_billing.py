@@ -20,7 +20,7 @@ depends_on = None
 def upgrade():
     op.create_table('billing',
                     sa.Column('id',
-                              sa.Interval,
+                              sa.Integer,
                               primary_key=True),
                     sa.Column('title',
                               sa.String(250),

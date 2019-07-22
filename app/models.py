@@ -2,8 +2,8 @@ from datetime import datetime
 
 from flask_login import UserMixin
 from flask_mail import Message
-from sqlalchemy import (Boolean, Column, DateTime, Integer, Numeric, String,
-                        Text, ForeignKey)
+from sqlalchemy import (Boolean, Column, DateTime, ForeignKey, Integer,
+                        Numeric, String, Text)
 from sqlalchemy.orm import relationship
 
 from app import bcrypt, db, mail
@@ -53,15 +53,14 @@ class Billing(db.Model):
                    nullable=False)
     description = Column(Text,
                          nullable=False)
-
     value = Column(Numeric,
                    nullable=False)
     work_date = Column(DateTime,
                        nullable=False,
                        default=datetime.utcnow)
-    received_date = Column(DateTime,
-                           nullable=True,
-                           default=None)
+    receive_date = Column(DateTime,
+                          nullable=True,
+                          default=None)
     received = Column(Boolean,
                       nullable=False,
                       default=False)

@@ -1,5 +1,41 @@
 {% extends "layout.html" %}
 
 {% block content %}
-<h1>Create Billing</h1>
+<form method="POST">
+    {{ form.hidden_tag() }}
+
+    {{ form.title.label }}
+    {{ form.title }}
+    {% if form.title.errors %}
+    {% for error in form.title.errors %}
+    <span>{{ error }}</span>
+    {% endfor %}
+    {% endif %}
+
+    {{ form.description.label }}
+    {{ form.description }}
+    {% if form.description.errors %}
+    {% for error in form.description.errors %}
+    <span>{{ error }}</span>
+    {% endfor %}
+    {% endif %}
+
+    {{ form.value.label }}
+    {{ form.value }}
+    {% if form.value.errors %}
+    {% for error in form.value.errors %}
+    <span>{{ error }}</span>
+    {% endfor %}
+    {% endif %}
+
+    {{ form.work_date.label }}
+    {{ form.work_date }}
+    {% if form.work_date.errors %}
+    {% for error in form.work_date.errors %}
+    <span>{{ error }}</span>
+    {% endfor %}
+    {% endif %}
+
+    {{ form.submit }}
+</form>
 {% endblock %}
