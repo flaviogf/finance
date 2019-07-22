@@ -13,4 +13,4 @@ class CreateBillingForm(FlaskForm):
                          places=2)
     work_date = DateTimeField('Work Date',
                               validators=[DataRequired()])
-    submit = SubmitField('Create')
+    submit = SubmitField('Save')

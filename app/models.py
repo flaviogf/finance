@@ -24,12 +24,15 @@ class User(db.Model, UserMixin):
                       nullable=False)
     billing = relationship('Billing', backref='user')
 
+    def __repr__(self):
+        return f"<User(id={self.id}, name='{self.name}')>"
+
     @staticmethod
     def generate_password_hash(password):
         return bcrypt.generate_password_hash(password)
 
-    def __repr__(self):
-        return f"<User(id={self.id}, name='{self.name}')>"
+    def get_id(self):
+        return self.id
 
     def authenticate(self, password):
         return bcrypt.check_password_hash(self.password, password)
@@ -53,7 +56,7 @@ class Billing(db.Model):
                    nullable=False)
     description = Column(Text,
                          nullable=False)
-    value = Column(Numeric,
+    value = Column(Numeric(10, 2),
                    nullable=False)
     work_date = Column(DateTime,
                        nullable=False,
@@ -69,3 +72,11 @@ class Billing(db.Model):
 
     def __repr__(self):
         return f"<Billing(id={self.id}, title='{self.title}')>"
+
+    def confirm_receive(self):
+        self.receive_date = datetime.utcnow()
+        self.received = True
+
+    def cancel_receive(self):
+        self.receive_date = None
+        self.received = False

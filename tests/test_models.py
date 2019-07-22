@@ -58,3 +58,51 @@ class TestBilling:
         result = repr(billing)
 
         assert expected == result
+
+    def test_confirm_receive_update_receive_date(self):
+        billing = Billing(title='Mission A',
+                          description='Mission A description',
+                          value=100.99,
+                          work_date=datetime.utcnow(),
+                          user_id=1)
+
+        billing.confirm_receive()
+
+        assert billing.receive_date
+
+    def test_confirm_receive_update_received(self):
+        billing = Billing(title='Mission A',
+                          description='Mission A description',
+                          value=100.99,
+                          work_date=datetime.utcnow(),
+                          user_id=1)
+
+        billing.confirm_receive()
+
+        assert billing.received
+
+    def test_cancel_receive_update_receive_data(self):
+        billing = Billing(title='Mission A',
+                          description='Mission A description',
+                          value=100.99,
+                          work_date=datetime.utcnow(),
+                          user_id=1)
+
+        billing.confirm_receive()
+
+        billing.cancel_receive()
+
+        assert not billing.receive_date
+
+    def test_cancel_receive_update_receive(self):
+        billing = Billing(title='Mission A',
+                          description='Mission A description',
+                          value=100.99,
+                          work_date=datetime.utcnow(),
+                          user_id=1)
+
+        billing.confirm_receive()
+
+        billing.cancel_receive()
+
+        assert not billing.received

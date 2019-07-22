@@ -2,4 +2,31 @@
 
 {% block content %}
 <h1>Search Billing</h1>
+
+<a href="{{ url_for('billing.create') }}">Create</a>
+
+<table>
+    <thead>
+        <tr>
+            <th>ID</th>
+            <th>Title</th>
+            <th>Value</th>
+            <th colspan="2">Receive</th>
+        </tr>
+    </thead>
+
+    <tbody>
+        {% for billing in billings.items %}
+        <tr>
+            <td><a href="{{ url_for('billing.update', id=billing.id) }}">{{ billing.id }}</a></td>
+            <td>{{ billing.title }}</td>
+            <td>{{ billing.value }}</td>
+            <td>
+                <a href="{{ url_for('billing.confirm_receive', id=billing.id) }}">Confirm</a>
+                <a href="{{ url_for('billing.cancel_receive', id=billing.id) }}">Cancel</a>
+            </td>
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
 {% endblock %}

@@ -1,4 +1,5 @@
 from app.models import User
+from unittest import mock
 
 
 class TestLogin:
@@ -75,7 +76,7 @@ class TestLogin:
 
         response = client.post('/login', data=data, follow_redirects=True)
 
-        assert b'Home' in response.data
+        assert b'Finance - Home' in response.data
 
 
 class TestRegister:
@@ -174,7 +175,7 @@ class TestRegister:
 
         response = client.post('/register', data=data, follow_redirects=True)
 
-        assert b'Home' in response.data
+        assert b'Finance - Login' in response.data
 
     def test_should_register_insert_user_in_database(self, client):
         data = {
@@ -187,3 +188,10 @@ class TestRegister:
         client.post('/register', data=data, follow_redirects=True)
 
         assert 1 == User.query.count()
+
+
+class TestLogout:
+    def test_should_logout_redirect_to_login(self, client):
+        response = client.get('/logout', follow_redirects=True)
+
+        assert b'Finance - Login' in response.data

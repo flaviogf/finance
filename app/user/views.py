@@ -1,6 +1,6 @@
 from flask import (Blueprint, current_app, flash, redirect, render_template,
-                   url_for)
-from flask_login import login_user
+                   url_for, request)
+from flask_login import current_user, login_required, login_user, logout_user
 
 from app import db
 from app.models import User
@@ -19,7 +19,9 @@ def login():
         if user and user.authenticate(form.password.data):
             login_user(user, remember=form.remember.data)
 
-            return redirect(url_for('core.home'))
+            next_url = request.args.get('next')
+
+            return redirect(next_url or url_for('core.home'))
 
         flash('Check your email or password.')
 
@@ -43,6 +45,13 @@ def register():
 
         user.send_welcome_message()
 
-        return redirect(url_for('core.home'))
+        return redirect(url_for('user.login'))
 
     return render_template('register.html', title='Register', form=form)
+
+
+@user.route('/logout')
+@login_required
+def logout():
+    logout_user()
+    return redirect(url_for('user.login'))
