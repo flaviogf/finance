@@ -8,11 +8,11 @@ pylint = "*"
 autopep8 = "*"
 coverage = "*"
 rope = "*"
+pytest = "*"
 
 [packages]
 alembic = "*"
 flask = "*"
-pytest = "*"
 flask-sqlalchemy = "*"
 flask-wtf = "*"
 flask-bcrypt = "*"

@@ -1,0 +1,13 @@
+version: "3"
+
+services: 
+  app:
+    build: .
+    image: flaviogf/finance:latest
+    entrypoint: bash -c "pipenv run alembic upgrade head && pipenv run python manage.py"
+  nginx:
+    image: flaviogf/finance-nginx:latest
+    ports: 
+      - 80:80
+    depends_on: 
+      - app
