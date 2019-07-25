@@ -6,7 +6,7 @@ services:
     image: flaviogf/finance:latest
     entrypoint: bash -c "pipenv run alembic upgrade head && pipenv run gunicorn manage:app --bind 0.0.0.0:80"
     environment: 
-      - MAIL_USERNAME=flavio.fernandes6@gmail.com
-      - MAIL_PASSWORD=3z3G//Ks
+      - MAIL_USERNAME=xpto
+      - MAIL_PASSWORD=xpto
     ports: 
       - 8000:80
