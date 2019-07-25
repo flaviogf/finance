@@ -4,6 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro&display=swap" rel="stylesheet">
     {% if title %}
     <title>Finance - {{ title }}</title>
     {% else %}
@@ -13,7 +14,7 @@
 
 <body>
     {% if current_user.is_authenticated %}
-    <nav>
+    <nav class="nav">
         <ul>
             <li>
                 <a href="{{ url_for('core.home') }}">Home</a>
@@ -23,7 +24,7 @@
         </ul>
     </nav>
     {% else %}
-    <nav>
+    <nav class="nav">
         <ul>
             <li>
                 <a href="{{ url_for('user.login') }}">Login</a>
@@ -43,6 +44,8 @@
     {% endfor %}
     {% endif %}
     {% endwith %}
+
+    <script src="{{ url_for('static', filename='dist/app.min.js') }}"></script>
 </body>
 
 </html>
