@@ -1,0 +1,10 @@
+{
+    "AWSEBDockerrunVersion": "1",
+    "Image": {
+        "Name": "003441178720.dkr.ecr.us-east-1.amazonaws.com/flaviogf/finance",
+        "Update": "true"
+    },
+    "Ports": [{
+        "ContainerPort": "80"
+    }]
+}

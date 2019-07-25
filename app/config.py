@@ -1,6 +1,3 @@
-from os import environ
-
-
 class Config:
     SECRET_KEY = '7f355bd0a2261318dad660052014a8a49a95e9ce7293d6a9f6ad574f715d57db'
     SQLALCHEMY_TRACK_MODIFICATIONS = False
@@ -8,12 +5,12 @@ class Config:
     MAIL_PORT = '587'
     MAIL_USE_TLS = True
     MAIL_DEFAULT_SENDER = 'noreply@finance.com'
+    MAIL_USERNAME = 'flavio.fernandes6@gmail.com'
+    MAIL_PASSWORD = '3z3G//Ks'
 
 
 class Production(Config):
-    SQLALCHEMY_DATABASE_URI = 'sqlite:///db.sqlite3'
-    MAIL_USERNAME = environ.get('MAIL_USERNAME')
-    MAIL_PASSWORD = environ.get('MAIL_PASSWORD')
+    SQLALCHEMY_DATABASE_URI = 'postgresql+psycopg2://postgres:C894aH86dPAP5V0uuEiV@finance.c4wkgwgnxr0p.us-east-1.rds.amazonaws.com/finance'
 
 
 class Testing(Config):

@@ -29,7 +29,7 @@ class User(db.Model, UserMixin):
 
     @staticmethod
     def generate_password_hash(password):
-        return bcrypt.generate_password_hash(password)
+        return bcrypt.generate_password_hash(password).decode('utf-8')
 
     def get_id(self):
         return self.id
