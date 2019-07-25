@@ -5,4 +5,4 @@ COPY ./Pipfile ./Pipfile
 RUN pipenv install
 COPY . .
 EXPOSE 80
-CMD [ "pipenv", "run", "python", "manage.py" ]
+ENTRYPOINT [ "pipenv", "run", "gunicorn", "manage:app", "--bind", "0.0.0.0:80" ]

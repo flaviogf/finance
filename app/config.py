@@ -10,7 +10,7 @@ class Config:
     MAIL_DEFAULT_SENDER = 'noreply@finance.com'
 
 
-class Development(Config):
+class Production(Config):
     SQLALCHEMY_DATABASE_URI = 'sqlite:///db.sqlite3'
     MAIL_USERNAME = environ.get('MAIL_USERNAME')
     MAIL_PASSWORD = environ.get('MAIL_PASSWORD')

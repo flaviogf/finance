@@ -10,7 +10,7 @@ login_manager = LoginManager()
 mail = Mail()
 
 
-def create_app(config='app.config.Development'):
+def create_app(config):
     app = Flask(__name__)
     app.config.from_object(config)
 

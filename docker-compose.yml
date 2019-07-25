@@ -4,10 +4,9 @@ services:
   app:
     build: .
     image: flaviogf/finance:latest
-    entrypoint: bash -c "pipenv run alembic upgrade head && pipenv run python manage.py"
-  nginx:
-    image: flaviogf/finance-nginx:latest
+    entrypoint: bash -c "pipenv run alembic upgrade head && pipenv run gunicorn manage:app --bind 0.0.0.0:80"
+    environment: 
+      - MAIL_USERNAME=flavio.fernandes6@gmail.com
+      - MAIL_PASSWORD=3z3G//Ks
     ports: 
-      - 80:80
-    depends_on: 
-      - app
+      - 8000:80
