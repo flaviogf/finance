@@ -3,9 +3,10 @@ const path = require('path')
 
 module.exports = {
     mode: 'development',
-    entry: path.join(__dirname, 'src', 'index.js'),
+    entry: path.join(__dirname, 'static', 'src', 'index.js'),
     output: {
-        filename: 'app.min.js'
+        filename: 'app.min.js',
+        path: path.join(__dirname, 'app', 'static')
     },
     module: {
         rules: [{
