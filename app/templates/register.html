@@ -1,41 +1,53 @@
 {% extends "layout.html" %}
 
 {% block content %}
-<form method="POST">
-    {{ form.hidden_tag() }}
+<main class="register__content">
+    <form class="register__form" method="POST">
+        {{ form.hidden_tag() }}
 
-    {{ form.name.label }}
-    {{ form.name }}
-    {% if form.name.errors %}
-    {% for error in form.name.errors %}
-    <span>{{ error }}</span>
-    {% endfor %}
-    {% endif %}
+        <div class="register__form_group">
+            {{ form.name.label(class="register__form_label") }}
+            {{ form.name(class="register__form_input") }}
+            {% if form.name.errors %}
+            {% for error in form.name.errors %}
+            <span>{{ error }}</span>
+            {% endfor %}
+            {% endif %}
+        </div>
 
-    {{ form.email.label }}
-    {{ form.email }}
-    {% if form.email.errors %}
-    {% for error in form.email.errors %}
-    <span>{{ error }}</span>
-    {% endfor %}
-    {% endif %}
+        <div class="register__form_group">
+            {{ form.email.label(class="register__form_label") }}
+            {{ form.email(class="register__form_input") }}
+            {% if form.email.errors %}
+            {% for error in form.email.errors %}
+            <span>{{ error }}</span>
+            {% endfor %}
+            {% endif %}
+        </div>
 
-    {{ form.password.label }}
-    {{ form.password }}
-    {% if form.password.errors %}
-    {% for error in form.password.errors %}
-    <span>{{ error }}</span>
-    {% endfor %}
-    {% endif %}
+        <div class="register__form_group">
+            {{ form.password.label(class="register__form_label") }}
+            {{ form.password(class="register__form_input") }}
+            {% if form.password.errors %}
+            {% for error in form.password.errors %}
+            <span>{{ error }}</span>
+            {% endfor %}
+            {% endif %}
+        </div>
 
-    {{ form.confirm_password.label }}
-    {{ form.confirm_password }}
-    {% if form.confirm_password.errors %}
-    {% for error in form.confirm_password.errors %}
-    <span>{{ error }}</span>
-    {% endfor %}
-    {% endif %}
+        <div class="register__form_group">
+            {{ form.confirm_password.label(class="register__form_label") }}
+            {{ form.confirm_password(class="register__form_input") }}
+            {% if form.confirm_password.errors %}
+            {% for error in form.confirm_password.errors %}
+            <span>{{ error }}</span>
+            {% endfor %}
+            {% endif %}
+        </div>
 
-    {{ form.submit }}
-</form>
+        <div class="register__form_group">
+            {{ form.submit(class="register__form_button") }}
+        </div>
+    </form>
+</main>
 {% endblock %}

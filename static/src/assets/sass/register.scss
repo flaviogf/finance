@@ -1,13 +1,12 @@
-.login__content {
+.register__content {
     justify-content: center;
-    flex-direction: column;
     align-items: center;
     display: flex;
 }
 
-.login__form {
-    box-shadow: 0px 2px 4px 0px rgba(0, 0, 0, 0.1);
-    border: 1px solid rgba(0, 0, 0, 0.1);
+.register__form {
+    box-shadow: 0 2px 4px 0px rgba(0, 0, 0, .1);
+    border: 1px solid rgba(0, 0, 0, .1);
     background-color: white;
     position: relative;
     border-radius: 3px;
@@ -16,47 +15,35 @@
     width: 290px;
 }
 
-.login__form::before {
+.register__form::before {
     background-color: $primary-color;
-    border-radius: 3px 3px 0 0;
+    border-radius: 2px 2px 0 0;
     position: absolute;
     width: 288px;
     height: 3px;
     content: "";
     left: 0px;
-    top: 0px;
+    top: 0;
 }
 
-.login__form_group {
+.register__form_group {
     flex-direction: column;
-    margin: 8px 0;
     display: flex;
+    margin: 8px 0;
 }
 
-.login__form_label {
-    margin-bottom: 5px;
+.register__form_label {
+    margin-bottom: 5px
 }
 
-.login__form_input {
-    border: 1px solid lightgrey;
+.register__form_input {
     outline-color: $primary-color;
+    border: 1px solid lightgrey;
     padding: 8px;
     height: 35px;
 }
 
-.login__form_group--inline {
-    flex-direction: row;
-    align-items: center;
-}
-
-.login__form_group--inline>.login__form_label {
-    margin: 0;
-    margin-bottom: 1px;
-    margin-left: 5px;
-    order: 1;
-}
-
-.login__form_button {
+.register__form_button {
     background-color: $primary-color;
     border-radius: 2px;
     max-width: 75px;
@@ -67,23 +54,23 @@
 }
 
 @media(min-width: 768px) {
-    .login__form {
+    .register__form {
         padding: 10px 16px;
         min-width: 315px;
     }
 
-    .login__form::before {
+    .register__form::before {
         min-width: 313px;
     }
 }
 
 @media(min-width: 1024px) {
-    .login__form {
+    .register__form {
         padding: 10px 16px;
         min-width: 350px;
     }
 
-    .login__form::before {
+    .register__form::before {
         min-width: 348px;
     }
 }

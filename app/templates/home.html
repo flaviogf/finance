@@ -1,13 +1,17 @@
 {% extends "layout.html" %}
 
 {% block content %}
-<h1>Home</h1>
+<main class="home__content">
+    <section class="home__billing home__billing--received">
+        <h2>R$ {{ total_billing_received }}</h2>
+        <span>Received</span>
+        <img src="{{ url_for('static', filename='wallet.svg') }}" alt="icon">
+    </section>
 
-<section>
-    <h2>R$ {{ total_billing_received }}</h2>
-</section>
-
-<section>
-    <h2>R$ {{ total_billing_receivable }}</h2>
-</section>
+    <section class="home__billing home__billing--receivable">
+        <h2>R$ {{ total_billing_receivable }}</h2>
+        <span>Receivable</span>
+        <img src="{{ url_for('static', filename='wallet.svg') }}" alt="icon">
+    </section>
+</main>
 {% endblock %}
