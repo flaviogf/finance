@@ -1,0 +1,115 @@
+.pagination_billing__content {
+    grid-template-columns: 1fr;
+    grid-template-rows: auto;
+    display: grid;
+    padding: 5px;
+}
+
+.pagination_billing__card-table {
+    box-shadow: 0 2px 4px 0px rgba(0, 0, 0, .1);
+    grid-template-rows: 55px auto 55px;
+    grid-template-columns: 1fr;
+    background-color: white;
+    border-radius: 3px;
+    max-height: 300px;
+    grid-gap: 5px;
+    display: grid;
+}
+
+.pagination_billing__table {
+    width: 100%;
+}
+
+.pagination_billing__table tr {
+    border-bottom: 1px solid lightgrey;
+    border-top: 1px solid lightgrey;
+}
+
+.pagination_billing__table td:first-child,
+.pagination_billing__table th:first-child {
+    border-left: 1px solid lightgrey;
+}
+
+.pagination_billing__table td,
+.pagination_billing__table th {
+    border-right: 1px solid lightgrey;
+    padding: 8px;
+}
+
+.pagination_billing__card-header {
+    border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+    justify-content: space-between;
+    align-items: center;
+    position: relative;
+    padding: 0 16px;
+    display: flex;
+}
+
+.pagination_billing__card-header::before {
+    background-color: #d2d6de;
+    border-radius: 3px 3px 0 0;
+    position: absolute;
+    height: 5px;
+    content: "";
+    width: 100%;
+    left: 0;
+    top: 0;
+}
+
+.pagination_billing__card-header h1 {
+    font-size: 1.2rem;
+    font-weight: 500;
+}
+
+.pagination_billing__card-content {
+    padding: 5px 16px 0 16px;
+}
+
+.pagination_billing__card-footer {
+    border-top: 1px solid rgba(0, 0, 0, 0.1);
+    justify-content: flex-end;
+    align-items: center;
+    padding: 0 16px;
+    display: flex;
+}
+
+.pagination_billing__button {
+    justify-content: center;
+    text-decoration: none;
+    align-items: center;
+    border-radius: 3px;
+    color: #777;
+    display: flex;
+    width: 75px;
+}
+
+.pagination_billing__pages {
+    background-color: #fafafa;
+    border: 1px solid #ddd;
+    align-items: center;
+    border-radius: 2px;
+    display: flex;
+    height: 35px;
+}
+
+.pagination_billing__pages span,
+.pagination_billing__pages a {
+    border-right: 1px solid #ddd;
+    color: $text-primary-color;
+    text-decoration: none;
+    align-items: center;
+    display: flex;
+    height: 100%;
+    padding: 8px;
+}
+
+.pagination_billing__pages a:last-child {
+    border-right: none;
+}
+
+@media(min-width: 768px) {
+    .pagination_billing__content {
+        margin: 0 auto;
+        width: 720px;
+    }
+}

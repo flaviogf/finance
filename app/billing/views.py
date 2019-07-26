@@ -37,7 +37,7 @@ def pagination():
 
     billings = (Billing.query
                 .filter_by(user_id=current_user.get_id())
-                .paginate(page=page, per_page=8))
+                .paginate(page=page, per_page=1))
 
     return render_template('pagination_billing.html', title='Search Billing', billings=billings)
 

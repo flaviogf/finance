@@ -1,32 +1,57 @@
 {% extends "layout.html" %}
 
 {% block content %}
-<h1>Search Billing</h1>
+<main class="pagination_billing__content">
 
-<a href="{{ url_for('billing.create') }}">Create</a>
+    <div class="pagination_billing__card-table">
+        <header class="pagination_billing__card-header">
+            <h1>Search Billing</h1>
+            <a class="pagination_billing__button" href="{{ url_for('billing.create') }}">Create</a>
+        </header>
 
-<table>
-    <thead>
-        <tr>
-            <th>ID</th>
-            <th>Title</th>
-            <th>Value</th>
-            <th colspan="2">Receive</th>
-        </tr>
-    </thead>
+        <div class="pagination_billing__card-content">
+            <table class="pagination_billing__table">
+                <thead>
+                    <tr>
+                        <th>ID</th>
+                        <th>Title</th>
+                        <th>Value</th>
+                        <th colspan="2">Receive</th>
+                    </tr>
+                </thead>
 
-    <tbody>
-        {% for billing in billings.items %}
-        <tr>
-            <td><a href="{{ url_for('billing.update', id=billing.id) }}">{{ billing.id }}</a></td>
-            <td>{{ billing.title }}</td>
-            <td>{{ billing.value }}</td>
-            <td>
-                <a href="{{ url_for('billing.confirm_receive', id=billing.id) }}">Confirm</a>
-                <a href="{{ url_for('billing.cancel_receive', id=billing.id) }}">Cancel</a>
-            </td>
-        </tr>
-        {% endfor %}
-    </tbody>
-</table>
+                <tbody>
+                    {% for billing in billings.items %}
+                    <tr>
+                        <td><a href="{{ url_for('billing.update', id=billing.id) }}">{{ billing.id }}</a></td>
+                        <td>{{ billing.title }}</td>
+                        <td>{{ billing.value }}</td>
+                        <td>
+                            <a href="{{ url_for('billing.confirm_receive', id=billing.id) }}">Confirm</a>
+                            <a href="{{ url_for('billing.cancel_receive', id=billing.id) }}">Cancel</a>
+                        </td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+
+        <footer class="pagination_billing__card-footer">
+            <div class="pagination_billing__pages">
+                {% for page in billings.iter_pages() %}
+                {% if page %}
+                {% if page != billings.page %}
+                <a href="{{ url_for('billing.pagination', page=page) }}">{{ page }}</a>
+                {% else %}
+                <span>{{ page }}</span>
+                {% endif %}
+                {% else %}
+                <span>...</span>
+                {% endif %}
+                {% endfor %}
+            </div>
+        </footer>
+    </div>
+
+</main>
 {% endblock %}
