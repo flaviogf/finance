@@ -16,21 +16,43 @@
                         <th>ID</th>
                         <th>Title</th>
                         <th>Value</th>
-                        <th colspan="2">Receive</th>
+                        <th colspan="2">Received</th>
                     </tr>
                 </thead>
 
                 <tbody>
                     {% for billing in billings.items %}
+
+                    {% with received = billing.received %}
                     <tr>
                         <td><a href="{{ url_for('billing.update', id=billing.id) }}">{{ billing.id }}</a></td>
                         <td>{{ billing.title }}</td>
                         <td>{{ billing.value }}</td>
                         <td>
-                            <a href="{{ url_for('billing.confirm_receive', id=billing.id) }}">Confirm</a>
-                            <a href="{{ url_for('billing.cancel_receive', id=billing.id) }}">Cancel</a>
+                            {% if received %}
+                            <span>
+                                <i class="pagination_billing__action--confirm fa fa-check" aria-hidden="true"></i>
+                            </span>
+                            {% else %}
+                            <a href="{{ url_for('billing.confirm_receive', id=billing.id, page=billings.page) }}">
+                                <i class="pagination_billing__action--disabled fa fa-check" aria-hidden="true"></i>
+                            </a>
+                            {% endif %}
+                        </td>
+                        <td>
+                            {% if not received %}
+                            <span>
+                                <i class="pagination_billing__action--cancel fa fa-times" aria-hidden="true"></i>
+                            </span>
+                            {% else %}
+                            <a href="{{ url_for('billing.cancel_receive', id=billing.id, page=billings.page) }}">
+                                <i class="pagination_billing__action--disabled fas fa-times"></i>
+                            </a>
+                            {% endif %}
                         </td>
                     </tr>
+                    {% endwith %}
+
                     {% endfor %}
                 </tbody>
             </table>
@@ -38,17 +60,27 @@
 
         <footer class="pagination_billing__card-footer">
             <div class="pagination_billing__pages">
-                {% for page in billings.iter_pages() %}
-                {% if page %}
-                {% if page != billings.page %}
-                <a href="{{ url_for('billing.pagination', page=page) }}">{{ page }}</a>
+                {% if billings.has_prev %}
+                <a href="{{ url_for('billing.pagination', page=billings.prev_num) }}">
+                    <i class="fas fa-caret-left"></i>
+                </a>
                 {% else %}
-                <span>{{ page }}</span>
+                <span>
+                    <i class="fas fa-caret-left"></i>
+                </span>
                 {% endif %}
+
+                <span>{{ billings.page }}</span>
+
+                {% if billings.has_next %}
+                <a href="{{ url_for('billing.pagination', page=billings.next_num) }}">
+                    <i class="fas fa-caret-right"></i>
+                </a>
                 {% else %}
-                <span>...</span>
+                <span>
+                    <i class="fas fa-caret-right"></i>
+                </span>
                 {% endif %}
-                {% endfor %}
             </div>
         </footer>
     </div>

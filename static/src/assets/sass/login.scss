@@ -66,6 +66,15 @@
     padding: 8px;
 }
 
+.login__form_input--error {
+    border: 1px solid #dd4b39;
+    outline: none;
+}
+
+.login__message--error {
+    color: #dd4b39;
+}
+
 @media(min-width: 768px) {
     .login__form {
         padding: 10px 16px;

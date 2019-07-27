@@ -1,0 +1,73 @@
+.create_billing__content {
+    padding: 5px;
+}
+
+.create_billing__card {
+    box-shadow: 0 2px 4px 0 rgba(0, 0, 0, .1);
+    background-color: white;
+    border-radius: 3px;
+    position: relative;
+    padding: 16px;
+}
+
+.create_billing__card::before {
+    background-color: #d2d6de;
+    border-radius: 3px 3px 0 0;
+    position: absolute;
+    content: "";
+    height: 5px;
+    width: 100%;
+    left: 0;
+    top: 0;
+}
+
+.create_billing__form_group {
+    flex-direction: column;
+    display: flex;
+    margin: 8px 0;
+}
+
+.create_billing__form_group--right {
+    align-items: flex-end;
+}
+
+.create_billing__label {
+    margin-bottom: 5px;
+}
+
+.create_billing__input {
+    border: 1px solid lightgrey;
+    outline-color: $primary-color;
+    padding: 8px;
+}
+
+textarea.create_billing__input {
+    height: 150px;
+    resize: none;
+}
+
+.create_billing__button {
+    background-color: #367fa9;
+    border-radius: 2px;
+    cursor: pointer;
+    color: white;
+    border: none;
+    padding: 8px;
+    width: 75px;
+}
+
+.create_billing__input--error {
+    border: 1px solid #dd4b39;
+    outline: none;
+}
+
+.create_billing__message--error {
+    color: #dd4b39;
+}
+
+@media(min-width: 768px) {
+    .create_billing__content {
+        margin: 0 auto;
+        width: 720px;
+    }
+}

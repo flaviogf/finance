@@ -5,6 +5,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro&display=swap" rel="stylesheet">
+    <link href="https://cdn.rawgit.com/jgthms/minireset.css/master/minireset.min.css" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.9.0/css/all.min.css" rel="stylesheet">
     {% if title %}
     <title>Finance - {{ title }}</title>
     {% else %}
@@ -54,6 +56,10 @@
     {% endwith %}
 
     <script src="{{ url_for('static', filename='app.min.js') }}"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.8.0/Chart.bundle.min.js"></script>
+
+    {% block scripts %}
+    {% endblock %}
 </body>
 
 </html>

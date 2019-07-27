@@ -1,8 +1,9 @@
 .home__content {
     grid-template-columns: 1fr 1fr;
-    grid-template-rows: auto;
+    grid-template-rows: auto 1fr;
     grid-template-areas:
-        "receivable received";
+        "receivable received"
+        "chart chart";
     grid-gap: 5px;
     display: grid;
     padding: 5px;
@@ -54,6 +55,17 @@
 .home__billing--receivable {
     grid-area: receivable;
     background-color: #f39c12;
+}
+
+.home__billing__line_chart {
+    grid-area: chart;
+}
+
+.home__billing__line_chart_card {
+    box-shadow: 0 2px 4px 0 rgba(0, 0, 0, .1);
+    background-color: white;
+    border-radius: 3px;
+    padding: 16px;
 }
 
 @media(min-width: 768px) {

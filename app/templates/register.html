@@ -2,47 +2,75 @@
 
 {% block content %}
 <main class="register__content">
-    <form class="register__form" method="POST">
+    <form class="register__form" method="POST" novalidate>
         {{ form.hidden_tag() }}
 
         <div class="register__form_group">
+            {% with has_error = form.name.errors %}
+
             {{ form.name.label(class="register__form_label") }}
-            {{ form.name(class="register__form_input") }}
-            {% if form.name.errors %}
+
+            {% if has_error %}
+            {{ form.name(class="register__form_input register__form_input--error") }}
             {% for error in form.name.errors %}
-            <span>{{ error }}</span>
+            <span class="register__message--error">{{ error }}</span>
             {% endfor %}
+            {% else %}
+            {{ form.name(class="register__form_input") }}
             {% endif %}
+
+            {% endwith %}
         </div>
 
         <div class="register__form_group">
+            {% with has_error = form.email.errors %}
+
             {{ form.email.label(class="register__form_label") }}
-            {{ form.email(class="register__form_input") }}
-            {% if form.email.errors %}
+
+            {% if has_error %}
+            {{ form.email(class="register__form_input register__form_input--error") }}
             {% for error in form.email.errors %}
-            <span>{{ error }}</span>
+            <span class="register__message--error">{{ error }}</span>
             {% endfor %}
+            {% else %}
+            {{ form.email(class="register__form_input") }}
             {% endif %}
+
+            {% endwith %}
         </div>
 
         <div class="register__form_group">
+            {% with has_error = form.password.errors %}
+
             {{ form.password.label(class="register__form_label") }}
-            {{ form.password(class="register__form_input") }}
-            {% if form.password.errors %}
+
+            {% if has_error %}
+            {{ form.password(class="register__form_input register__form_input--error") }}
             {% for error in form.password.errors %}
-            <span>{{ error }}</span>
+            <span class="register__message--error">{{ error }}</span>
             {% endfor %}
+            {% else %}
+            {{ form.password(class="register__form_input") }}
             {% endif %}
+
+            {% endwith %}
         </div>
 
         <div class="register__form_group">
+            {% with has_error = form.confirm_password.errors %}
+
             {{ form.confirm_password.label(class="register__form_label") }}
-            {{ form.confirm_password(class="register__form_input") }}
-            {% if form.confirm_password.errors %}
+
+            {% if has_error %}
+            {{ form.confirm_password(class="register__form_input register__form_input--error") }}
             {% for error in form.confirm_password.errors %}
-            <span>{{ error }}</span>
+            <span class="register__message--error">{{ error }}</span>
             {% endfor %}
+            {% else %}
+            {{ form.confirm_password(class="register__form_input") }}
             {% endif %}
+
+            {% endwith %}
         </div>
 
         <div class="register__form_group">

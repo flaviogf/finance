@@ -5,6 +5,7 @@ from flask_login import current_user, login_required
 from app import db
 from app.billing.forms import CreateBillingForm
 from app.models import Billing
+from sqlalchemy import desc
 
 billing = Blueprint('billing', __name__)
 
@@ -37,7 +38,8 @@ def pagination():
 
     billings = (Billing.query
                 .filter_by(user_id=current_user.get_id())
-                .paginate(page=page, per_page=1))
+                .order_by(desc(Billing.id))
+                .paginate(page=page, per_page=5))
 
     return render_template('pagination_billing.html', title='Search Billing', billings=billings)
 
@@ -81,7 +83,9 @@ def confirm_receive(id):
 
     db.session.commit()
 
-    return redirect(url_for('billing.pagination'))
+    page = request.args.get('page', 1, type=int)
+
+    return redirect(url_for('billing.pagination', page=page))
 
 
 @billing.route('/billing/<int:id>/cancel-receive')
@@ -96,4 +100,6 @@ def cancel_receive(id):
 
     db.session.commit()
 
-    return redirect(url_for('billing.pagination'))
+    page = request.args.get('page', 1, type=int)
+
+    return redirect(url_for('billing.pagination', page=page))

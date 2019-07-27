@@ -1,41 +1,83 @@
 {% extends "layout.html" %}
 
 {% block content %}
-<form method="POST">
-    {{ form.hidden_tag() }}
+<main class="create_billing__content">
+    <div class="create_billing__card">
+        <form class="create_billing__form" method="POST" novalidate>
+            {{ form.hidden_tag() }}
 
-    {{ form.title.label }}
-    {{ form.title }}
-    {% if form.title.errors %}
-    {% for error in form.title.errors %}
-    <span>{{ error }}</span>
-    {% endfor %}
-    {% endif %}
+            <div class="create_billing__form_group">
+                {% with has_error = form.title.errors %}
 
-    {{ form.description.label }}
-    {{ form.description }}
-    {% if form.description.errors %}
-    {% for error in form.description.errors %}
-    <span>{{ error }}</span>
-    {% endfor %}
-    {% endif %}
+                {{ form.title.label(class="create_billing__label") }}
 
-    {{ form.value.label }}
-    {{ form.value }}
-    {% if form.value.errors %}
-    {% for error in form.value.errors %}
-    <span>{{ error }}</span>
-    {% endfor %}
-    {% endif %}
+                {% if has_error %}
+                {{ form.title(class="create_billing__input create_billing__input--error") }}
+                {% for error in form.title.errors %}
+                <span class="create_billing__message--error">{{ error }}</span>
+                {% endfor %}
+                {% else %}
+                {{ form.title(class="create_billing__input") }}
+                {% endif %}
 
-    {{ form.work_date.label }}
-    {{ form.work_date }}
-    {% if form.work_date.errors %}
-    {% for error in form.work_date.errors %}
-    <span>{{ error }}</span>
-    {% endfor %}
-    {% endif %}
+                {% endwith %}
+            </div>
 
-    {{ form.submit }}
-</form>
+            <div class="create_billing__form_group">
+                {% with has_error = form.description.errors %}
+
+                {{ form.description.label(class="create_billing__label") }}
+
+                {% if has_error %}
+                {{ form.description(class="create_billing__input create_billing__input--error") }}
+                {% for error in form.description.errors %}
+                <span class="create_billing__message--error">{{ error }}</span>
+                {% endfor %}
+                {% else %}
+                {{ form.description(class="create_billing__input") }}
+                {% endif %}
+
+                {% endwith %}
+            </div>
+
+            <div class="create_billing__form_group">
+                {% with has_error = form.value.errors %}
+
+                {{ form.value.label(class="create_billing__label") }}
+
+                {% if has_error %}
+                {{ form.value(class="create_billing__input create_billing__input--error") }}
+                {% for error in form.value.errors %}
+                <span class="create_billing__message--error">{{ error }}</span>
+                {% endfor %}
+                {% else %}
+                {{ form.value(class="create_billing__input") }}
+                {% endif %}
+
+                {% endwith %}
+            </div>
+
+            <div class="create_billing__form_group">
+                {% with has_error = form.work_date.errors %}
+
+                {{ form.work_date.label(class="create_billing__label") }}
+
+                {% if has_error %}
+                {{ form.work_date(class="create_billing__input create_billing__input--error") }}
+                {% for error in form.work_date.errors %}
+                <span class="create_billing__message--error">{{ error }}</span>
+                {% endfor %}
+                {% else %}
+                {{ form.work_date(class="create_billing__input") }}
+                {% endif %}
+
+                {% endwith %}
+            </div>
+
+            <div class="create_billing__form_group create_billing__form_group--right">
+                {{ form.submit(class="create_billing__button") }}
+            </div>
+        </form>
+    </div>
+</main>
 {% endblock %}

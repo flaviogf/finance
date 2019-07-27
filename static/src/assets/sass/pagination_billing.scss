@@ -6,34 +6,14 @@
 }
 
 .pagination_billing__card-table {
-    box-shadow: 0 2px 4px 0px rgba(0, 0, 0, .1);
+    box-shadow: 0 2px 4px 0px rgba(0, 0, 0, 0.1);
     grid-template-rows: 55px auto 55px;
     grid-template-columns: 1fr;
     background-color: white;
     border-radius: 3px;
-    max-height: 300px;
+    max-height: 360px;
     grid-gap: 5px;
     display: grid;
-}
-
-.pagination_billing__table {
-    width: 100%;
-}
-
-.pagination_billing__table tr {
-    border-bottom: 1px solid lightgrey;
-    border-top: 1px solid lightgrey;
-}
-
-.pagination_billing__table td:first-child,
-.pagination_billing__table th:first-child {
-    border-left: 1px solid lightgrey;
-}
-
-.pagination_billing__table td,
-.pagination_billing__table th {
-    border-right: 1px solid lightgrey;
-    padding: 8px;
 }
 
 .pagination_billing__card-header {
@@ -73,14 +53,51 @@
     display: flex;
 }
 
-.pagination_billing__button {
-    justify-content: center;
+.pagination_billing__table {
+    width: 100%;
+}
+
+.pagination_billing__table tr {
+    border-bottom: 1px solid lightgrey;
+    border-top: 1px solid lightgrey;
+}
+
+.pagination_billing__table td:first-child,
+.pagination_billing__table th:first-child {
+    border-left: 1px solid lightgrey;
+}
+
+.pagination_billing__table td,
+.pagination_billing__table th {
+    border-right: 1px solid lightgrey;
+    padding: 8px;
+}
+
+.pagination_billing__table th:first-child,
+.pagination_billing__table th:nth-child(4) {
+    text-align: center;
+}
+
+.pagination_billing__table td:first-child,
+.pagination_billing__table td:nth-child(4),
+.pagination_billing__table td:last-child {
+    text-align: center;
+    width: 40px;
+}
+
+.pagination_billing__table td a {
+    color: $text-primary-color;
     text-decoration: none;
+    font-weight: bold;
+}
+
+.pagination_billing__button {
+    justify-content: flex-end;
+    text-decoration: none;
+    color: $primary-color;
     align-items: center;
     border-radius: 3px;
-    color: #777;
     display: flex;
-    width: 75px;
 }
 
 .pagination_billing__pages {
@@ -95,16 +112,30 @@
 .pagination_billing__pages span,
 .pagination_billing__pages a {
     border-right: 1px solid #ddd;
-    color: $text-primary-color;
+    justify-content: center;
     text-decoration: none;
     align-items: center;
+    color: #333;
     display: flex;
     height: 100%;
-    padding: 8px;
+    padding: 5px;
+    width: 35px;
 }
 
 .pagination_billing__pages a:last-child {
     border-right: none;
+}
+
+.pagination_billing__action--confirm {
+    color: #00a65a;
+}
+
+.pagination_billing__action--cancel {
+    color: #dd4b39;
+}
+
+.pagination_billing__action--disabled {
+    color: #ddd;
 }
 
 @media(min-width: 768px) {
