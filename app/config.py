@@ -10,7 +10,7 @@ class Config:
 
 
 class Production(Config):
-    SQLALCHEMY_DATABASE_URI = 'postgresql+psycopg2://postgres:C894aH86dPAP5V0uuEiV@finance.c4wkgwgnxr0p.us-east-1.rds.amazonaws.com/finance'
+    SQLALCHEMY_DATABASE_URI = 'postgresql+psycopg2://postgres:C894aH86dPAP5V0uuEiV@default.c4wkgwgnxr0p.us-east-1.rds.amazonaws.com/finance'
 
 
 class Testing(Config):
