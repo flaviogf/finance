@@ -19,7 +19,7 @@ flask-bcrypt = "*"
 flask-login = "*"
 flask-mail = "*"
 gunicorn = "==19.9.0"
-psycopg2 = "==2.8.3"
+psycopg2-binary = "==2.8.3"
 
 [requires]
 python_version = "3.7"
